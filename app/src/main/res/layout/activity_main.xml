@@ -9,8 +9,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.myaango.androidgpstest.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true">
+
+        <ImageButton
+            android:id="@+id/location_me_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/locate_me"
+            android:onClick="onClickLocateMe"/>
+
+        <TextView
+            android:id="@+id/location_updates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/location_me_action"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
