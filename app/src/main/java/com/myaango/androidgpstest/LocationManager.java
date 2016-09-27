@@ -26,6 +26,7 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
     public interface LocationListener {
         void onSuccess();
         void onFailure();
+        void onPermissionError();
     }
 
     //app context variable
@@ -125,7 +126,9 @@ public class LocationManager implements GoogleApiClient.ConnectionCallbacks, Goo
                     Toast toast = Toast.makeText(context, "No permission to access current location, please grant the permission first and try again!", Toast.LENGTH_SHORT);
                     toast.show();
                     locationAccessPermissionStatus = false;
-                    requestPermission();
+                    if (locationListener != null){
+                        locationListener.onPermissionError();
+                    }
                     return null;
                 }
                 else {

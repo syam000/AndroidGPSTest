@@ -10,15 +10,16 @@
     tools:context="com.myaango.androidgpstest.MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/location_me_action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/locate_me"
+            android:background="@null"
             android:onClick="onClickLocateMe"/>
 
         <TextView

@@ -1,5 +1,6 @@
 package com.myaango.androidgpstest;
 
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity implements LocationManager.L
 
     private LocationManager locationManager;
     private TextView locatioInfoTextView;
-
+    private static final int LOCATION_ACCESS_REQUEST_CODE = 665;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +56,30 @@ public class MainActivity extends AppCompatActivity implements LocationManager.L
     }
 
     @Override
+    public void onPermissionError() {
+        locationManager.requestPermission(this, LOCATION_ACCESS_REQUEST_CODE);
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
+            case LOCATION_ACCESS_REQUEST_CODE:{
 
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted
+                    Toast toast = Toast.makeText(this, "Granted to access the location, you try locating me :)", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                } else {
+
+                    // permission denied
+                    Toast toast = Toast.makeText(this, "FAIL!!! :(", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                return;
+            }
         }
     }
 }

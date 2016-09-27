@@ -28,6 +28,53 @@ dependencies {
 
 ### Get connected to Google play services
 
+```
+
+//create and instance of google api client
+googleApiClient = new GoogleApiClient.Builder(context)
+                        .addConnectionCallbacks(this)
+                        .addOnConnectionFailedListener(this)
+                        .addApi(LocationServices.API)
+                        .build();
+
+//connect to the services
+googleApiClient.connect();
+
+```
+
 ### Implement listeners
 
+```
+//this callback will be fired when the client get connected 
+@Override
+public void onConnected(@Nullable Bundle bundle) {
+        
+}
+
+//this callback method will be fired when connection get suspended
+@Override
+public void onConnectionSuspended(int i) {
+        
+}
+
+//this callback will be fired when connection fails
+@Override
+public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+       
+}
+
+```
+
+Once connected you will be able to call the last known location. 
+
+### Call to get last known location
+
+```
+
+public Location getLastknownLocation() {
+	return LocationServices.FusedLocationApi
+							   .getLastLocation(googleApiClient);
+}
+
+```
 
